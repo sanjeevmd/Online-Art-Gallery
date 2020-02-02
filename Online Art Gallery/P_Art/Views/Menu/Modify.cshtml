@@ -1,0 +1,71 @@
+﻿@model IEnumerable<P_Art.Models.ArtModify_Result>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<body style="background-color:silver">
+
+    <table class="table">
+        <tr>
+            <th>
+                ArtID
+            </th>
+            <th>
+                Art Title
+            </th>
+            <th>
+                Art Description
+            </th>
+            <th>
+                Minimum Bid Amount
+            </th>
+
+            <th>
+                Category
+            </th>
+
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtDescription)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinimumBidAmount)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryID)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ArtID }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.ArtID }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ArtID }) |
+                    @Html.ActionLink("SoldUNsold", "SoldUnsold", new { id = item.ArtID }) |
+                    @Html.ActionLink("HIghest bidder", "HighestBidder", new { id = item.ArtID })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

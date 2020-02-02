@@ -1,0 +1,5 @@
+C:\Users\Sanjeeb\Desktop\Copy - Copy\P_Art(binding)3 - Copy\PArt_Wcf\bin\PArt_Wcf.dll.config
+C:\Users\Sanjeeb\Desktop\Copy - Copy\P_Art(binding)3 - Copy\PArt_Wcf\bin\PArt_Wcf.dll
+C:\Users\Sanjeeb\Desktop\Copy - Copy\P_Art(binding)3 - Copy\PArt_Wcf\bin\PArt_Wcf.pdb
+C:\Users\Sanjeeb\Desktop\Copy - Copy\P_Art(binding)3 - Copy\PArt_Wcf\obj\Debug\PArt_Wcf.dll
+C:\Users\Sanjeeb\Desktop\Copy - Copy\P_Art(binding)3 - Copy\PArt_Wcf\obj\Debug\PArt_Wcf.pdb

@@ -1,0 +1,335 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+        </style>
+</head>
+
+    <div class="container">
+        <br>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+
+
+            <div class="carousel-inner" role="listbox">
+
+                <div class="item active">
+
+                    <img src="@Url.Content("~/Content/mytemplate/")img/picture8.jpg" alt="Chania"style="width:400px;height:400px;">
+                    <div class="carousel-caption">
+                        <h3>Arts</h3>
+                        <p>Wide range of Genuine Arts legally approved by Admins </p>
+                    </div>
+                </div>
+
+                <div class="item">
+
+                    <img src="@Url.Content("~/Content/mytemplate/")img/picture6.jpg" alt="Chania"style="width:400px;height:400px;">
+                    <div class="carousel-caption">
+                        <h3>Quality</h3>
+                        <p>Quality Ensured by a specialist Panel</p>
+                    </div>
+                </div>
+
+                <div class="item">
+
+                    <img src="@Url.Content("~/Content/mytemplate/")img/picture7.jpg" alt="Flower"style="width:400px;height:400px;">
+                    <div class="carousel-caption">
+                        <h3>Artist</h3>
+                        <p>Certified Artist with high Profile</p>
+                    </div>
+                </div>
+
+                <div class="item">
+
+                    <img src="@Url.Content("~/Content/mytemplate/")img/picture7.jpg" alt="Flower"style="width:400px;height:400px;">
+                    <div class="carousel-caption">
+                        <h3>Genuine</h3>
+                        <p>No indirect conditions and high customer satisfaction</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <section class="video">
+
+        <h3 class="animated wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">who we are &amp; what we do</h3>
+        <a href="https://youtu.be/hRJkxN4q0Fk" id="play_btn" class="fancybox animated wow flipInX animated" data-wow-duration="2s" style="visibility: visible; animation-duration: 2s; animation-name: flipInX;"></a>
+    </section>
+    <section class="blog_posts">
+        <div class="wrapper">
+            <div class="title animated wow fadeIn">
+                <h2>Recent Posts</h2>
+                <h3>the most recent posts from our Website</h3>
+                <hr class="separator" />
+            </div>
+
+            <ul class="clearfix">
+                <li class="animated wow fadeInDown">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">25</span>
+                            <span class="month">Jun</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/pic4.jpg" alt="" style="width:200px;height:200px;" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>A Picture is Poem Without Words.</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".2s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">11</span>
+                            <span class="month">May</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/pic1.jpg" alt="" style="width:200px;height:200px;" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>The Art ofcommunication is the language of leadership .</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".4s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">13</span>
+                            <span class="month">Feb</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/picture7.jpg" alt="" style="width:200px;height:200px;" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>The art of people is a true mirror of their minds.</h1>
+                    </a>
+                </li>
+
+
+                <li class="animated wow fadeInDown" data-wow-delay=".6s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">10</span>
+                            <span class="month">Jan</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/picture3.jpg" alt="" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>
+                            Every artist dips his brush in his own soul, and paints his own nature into his pictures.
+
+                        </h1>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+    <section class="blog_posts">
+        <div class="wrapper">
+            <div class="title animated wow fadeIn">
+                <h2>Most viewed Arts</h2>
+
+                <hr class="separator" />
+            </div>
+
+            <ul class="clearfix">
+                <li class="animated wow fadeInDown">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">25</span>
+                            <span class="month">Jun</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/picture5.jpg" alt="" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>A Picture is Poem Without Words.</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".2s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">11</span>
+                            <span class="month">May</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/pic5.jpg" alt="" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>This world is but a canvas to our imagination .</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".4s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">13</span>
+                            <span class="month">Feb</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/pic7.jpg" alt="" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>The work of art is a scream of freedom.</h1>
+                    </a>
+                </li>
+
+
+                <li class="animated wow fadeInDown" data-wow-delay=".6s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">10</span>
+                            <span class="month">Jan</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/picture8.jpg" alt="" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>
+                            Love of beauty is taste. The creation of beauty is art.
+
+                        </h1>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+    <section class="blog_posts">
+        <div class="wrapper">
+            <div class="title animated wow fadeIn">
+                <h2>Recently bought</h2>
+
+                <hr class="separator" />
+            </div>
+
+            <ul class="clearfix">
+                <li class="animated wow fadeInDown">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">25</span>
+                            <span class="month">Jun</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/pic8.jpg" alt="" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>Art, freedom and creativity will change society faster than politics.</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".2s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">11</span>
+                            <span class="month">May</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/pic2.jpg" alt="" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>A work of art is above all an adventure of the mind .</h1>
+                    </a>
+                </li>
+
+                <li class="animated wow fadeInDown" data-wow-delay=".4s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">13</span>
+                            <span class="month">Feb</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/pic3.jpg" alt="" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>Youth is the gift of nature, but age is a work of art.</h1>
+                    </a>
+                </li>
+
+
+                <li class="animated wow fadeInDown" data-wow-delay=".6s">
+                    <div class="media">
+                        <div class="date">
+                            <span class="day">10</span>
+                            <span class="month">Jan</span>
+                        </div>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/mytemplate/")img/img2.jpg" alt="" style="width:200px;height:200px;" />
+                        </a>
+                    </div>
+                    <a href="#">
+                        <h1>
+                            Diversity: the art of thinking independently together.
+
+                        </h1>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

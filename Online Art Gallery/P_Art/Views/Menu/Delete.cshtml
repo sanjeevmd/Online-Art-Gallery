@@ -1,0 +1,108 @@
+﻿@model P_Art.Models.ArtWork
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<body style="background-color:silver">
+    <div>
+        <h4>ArtWork</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ArtTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ArtTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ArtDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ArtDescription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImageURL)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PostedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PostedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MinimumBidAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MinimumBidAmount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CurrentBidAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CurrentBidAmount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsApproved)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsSold)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsSold)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserInformation.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserInformation.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.CategoryName)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>

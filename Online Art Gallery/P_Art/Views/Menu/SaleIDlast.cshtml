@@ -1,0 +1,32 @@
+﻿@model IEnumerable<P_Art.Models.saleidlast_Result>
+
+@{
+    ViewBag.Title = "SaleIDlast";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>SaleIDlast</h2>
+<body style="background-color:silver">
+
+    <table class="table">
+        <tr>
+            <th>
+                SaleID
+            </th>
+            <th>
+                BidAmount
+            </th>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SaleID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bidamount)
+                </td>
+            </tr>
+            }
+        </table>
+</body>

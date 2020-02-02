@@ -1,0 +1,52 @@
+﻿@model IEnumerable<P_Art.Models.Bid>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Bidamount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAllocated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtWork.ArtTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserInformation.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bidamount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAllocated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArtWork.ArtTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserInformation.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BidID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BidID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BidID })
+        </td>
+    </tr>
+}
+
+</table>

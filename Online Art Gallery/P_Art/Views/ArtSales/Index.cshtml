@@ -1,0 +1,54 @@
+﻿@model IEnumerable<P_Art.Models.ArtSale>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Index</h2>
+<body style="background-color:silver">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoldDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bid.BidID)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoldDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bid.BidID)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SaleID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SaleID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SaleID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

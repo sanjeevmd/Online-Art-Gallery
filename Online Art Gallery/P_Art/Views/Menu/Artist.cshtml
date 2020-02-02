@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Artist";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Artist</h2>
+<body style="background-color:silver">
+    <div style="line-height:60px">
+        <ol>
+            <li style="color:black">
+                @Html.ActionLink("Create New ArtWork", "Create", "Artworks")
+            </li>
+            <li style="color:black">
+                @Html.ActionLink("Modify ArtWorks", "Modify", "Menu")
+            </li>
+            <li style="color:black">
+                @Html.ActionLink("Delete Artworks", "Modify", "Menu")
+            </li>
+            <li>
+                @Html.ActionLink("View All Artworks", "Modify", "Menu")
+            </li>
+            <li>
+                @Html.ActionLink("View Category","Index","Categories")
+            </li>
+            <li>
+                @Html.ActionLink("Sell Artworks", "Create", "ArtSales")
+            </li>
+            <li>
+                @*@Html.ActionLink("Sales History of Sold Artworks", "Index3", "Function")*@
+            </li>
+        </ol>
+    </div>
+
+</body>

@@ -1,0 +1,51 @@
+﻿@model P_Art.Models.ArtSale
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ArtSale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoldDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoldDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bid.BidID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bid.BidID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SaleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

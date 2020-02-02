@@ -1,0 +1,62 @@
+﻿@model P_Art.Models.ArtSale
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ArtSale</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoldDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.SoldDate)*@
+                <input type="text" value="@ViewBag.date" readonly />
+                @*@Html.ValidationMessageFor(model => model.SoldDate)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeliveryAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeliveryAddress)
+                @Html.ValidationMessageFor(model => model.DeliveryAddress)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BidID, "BidID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BidID)
+                @*@Html.DropDownList("BidID", String.Empty)*@
+                @Html.ValidationMessageFor(model => model.BidID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaymentStatus)
+                @Html.ValidationMessageFor(model => model.PaymentStatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

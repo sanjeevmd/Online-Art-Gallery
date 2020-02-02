@@ -1,0 +1,131 @@
+﻿@model P_Art.Models.ArtWork
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ArtWork</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArtTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArtTitle)
+                @Html.ValidationMessageFor(model => model.ArtTitle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArtDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArtDescription)
+                @Html.ValidationMessageFor(model => model.ArtDescription)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ArtistID, "ArtistID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                @Html.TextAreaFor(model => model.ArtistID,new { value = ViewBag.user })
+                    @Html.DropDownList("ArtistID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.ArtistID)
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArtistID, "ArtistID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.TextBoxFor(model => model.ImageURL, new { ValueType= ViewBag.user })*@
+                <input type="text" name="id" value="@ViewBag.user" readonly id="id" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryID, "CategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CategoryID)                
+                @*@Html.DropDownList("CategoryID", String.Empty)*@
+                @Html.ValidationMessageFor(model => model.CategoryID)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ImageURL)
+                    @Html.ValidationMessageFor(model => model.ImageURL)
+                </div>
+            </div>*@
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.TextBoxFor(model => model.ImageURL, new { type = "file" })*@
+                    <input type="file" name="file" id="file" />
+                </div>
+            </div>
+        </div>
+        @*<div>
+            @Html.LabelFor(model => model.File)
+            @Html.TextBoxFor(model => model.File, new { type = "file" })
+            @Html.ValidationMessageFor(model => model.File)
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PostedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PostedDate)
+                @Html.ValidationMessageFor(model => model.PostedDate)*@
+                <input type="text" value="@ViewBag.date" readonly/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinimumBidAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MinimumBidAmount)
+                @Html.ValidationMessageFor(model => model.MinimumBidAmount)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.CurrentBidAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CurrentBidAmount)
+                    @Html.ValidationMessageFor(model => model.CurrentBidAmount)
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.IsApproved, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsApproved)
+                    @Html.ValidationMessageFor(model => model.IsApproved)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsSold, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsSold)
+                    @Html.ValidationMessageFor(model => model.IsSold)
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

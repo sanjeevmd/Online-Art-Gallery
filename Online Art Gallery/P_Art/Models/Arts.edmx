@@ -1,0 +1,706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ArtGalleryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArtSale">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoldDate" Type="datetime2" Precision="7" />
+          <Property Name="DeliveryAddress" Type="varchar" MaxLength="200" />
+          <Property Name="BidID" Type="bigint" />
+          <Property Name="PaymentStatus" Type="varchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="ArtWork">
+          <Key>
+            <PropertyRef Name="ArtID" />
+          </Key>
+          <Property Name="ArtID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArtTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ArtDescription" Type="varchar(max)" />
+          <Property Name="ArtistID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PostedDate" Type="datetime2" Precision="7" />
+          <Property Name="MinimumBidAmount" Type="money" Nullable="false" />
+          <Property Name="CurrentBidAmount" Type="money" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="IsSold" Type="bit" />
+        </EntityType>
+        <EntityType Name="Bid">
+          <Key>
+            <PropertyRef Name="BidID" />
+          </Key>
+          <Property Name="BidID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArtID" Type="bigint" Nullable="false" />
+          <Property Name="ArtCollectorID" Type="int" Nullable="false" />
+          <Property Name="Bidamount" Type="bigint" />
+          <Property Name="IsAllocated" Type="bit" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Credential">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserType" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleID" Type="bigint" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime2" Precision="7" />
+          <Property Name="BankName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CardType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CardNo" Type="bigint" Nullable="false" />
+          <Property Name="NameOnCard" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInformation">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Phone" Type="bigint" Nullable="false" />
+          <Property Name="HouseNumber" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PinCode" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ArtSale__BidID__32E0915F">
+          <End Role="Bid" Type="Self.Bid" Multiplicity="0..1" />
+          <End Role="ArtSale" Type="Self.ArtSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bid">
+              <PropertyRef Name="BidID" />
+            </Principal>
+            <Dependent Role="ArtSale">
+              <PropertyRef Name="BidID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArtWork__ArtistI__29572725">
+          <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="1" />
+          <End Role="ArtWork" Type="Self.ArtWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInformation">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ArtWork">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArtWork__Categor__2A4B4B5E">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="ArtWork" Type="Self.ArtWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="ArtWork">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bid__ArtCollecto__2F10007B">
+          <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="1" />
+          <End Role="Bid" Type="Self.Bid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInformation">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Bid">
+              <PropertyRef Name="ArtCollectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bid__ArtID__2E1BDC42">
+          <End Role="ArtWork" Type="Self.ArtWork" Multiplicity="1" />
+          <End Role="Bid" Type="Self.Bid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArtWork">
+              <PropertyRef Name="ArtID" />
+            </Principal>
+            <Dependent Role="Bid">
+              <PropertyRef Name="ArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Credentia__UserI__1920BF5C">
+          <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="1" />
+          <End Role="Credential" Type="Self.Credential" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserInformation">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Credential">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payment__SaleID__35BCFE0A">
+          <End Role="ArtSale" Type="Self.ArtSale" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArtSale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ArtModify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="artistid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ArtSoldUnsold" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="artistid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BidStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="collectorid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="categoryview" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="HighestBid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="artistid" Type="int" Mode="In" />
+          <Parameter Name="artid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="saleidlast" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bidid" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ArtGalleryModelStoreContainer">
+          <EntitySet Name="ArtSale" EntityType="Self.ArtSale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArtWork" EntityType="Self.ArtWork" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bid" EntityType="Self.Bid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credential" EntityType="Self.Credential" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInformation" EntityType="Self.UserInformation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ArtSale__BidID__32E0915F" Association="Self.FK__ArtSale__BidID__32E0915F">
+            <End Role="Bid" EntitySet="Bid" />
+            <End Role="ArtSale" EntitySet="ArtSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArtWork__ArtistI__29572725" Association="Self.FK__ArtWork__ArtistI__29572725">
+            <End Role="UserInformation" EntitySet="UserInformation" />
+            <End Role="ArtWork" EntitySet="ArtWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArtWork__Categor__2A4B4B5E" Association="Self.FK__ArtWork__Categor__2A4B4B5E">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ArtWork" EntitySet="ArtWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bid__ArtCollecto__2F10007B" Association="Self.FK__Bid__ArtCollecto__2F10007B">
+            <End Role="UserInformation" EntitySet="UserInformation" />
+            <End Role="Bid" EntitySet="Bid" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bid__ArtID__2E1BDC42" Association="Self.FK__Bid__ArtID__2E1BDC42">
+            <End Role="ArtWork" EntitySet="ArtWork" />
+            <End Role="Bid" EntitySet="Bid" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Credentia__UserI__1920BF5C" Association="Self.FK__Credentia__UserI__1920BF5C">
+            <End Role="UserInformation" EntitySet="UserInformation" />
+            <End Role="Credential" EntitySet="Credential" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payment__SaleID__35BCFE0A" Association="Self.FK__Payment__SaleID__35BCFE0A">
+            <End Role="ArtSale" EntitySet="ArtSale" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ArtGalleryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ArtSale">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoldDate" Type="DateTime" Precision="7" />
+          <Property Name="DeliveryAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BidID" Type="Int64" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bid" Relationship="Self.FK__ArtSale__BidID__32E0915F" FromRole="ArtSale" ToRole="Bid" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__SaleID__35BCFE0A" FromRole="ArtSale" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="ArtWork">
+          <Key>
+            <PropertyRef Name="ArtID" />
+          </Key>
+          <Property Name="ArtID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArtTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ArtDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ArtistID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostedDate" Type="DateTime" Precision="7" />
+          <Property Name="MinimumBidAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CurrentBidAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="IsSold" Type="Boolean" />
+          <NavigationProperty Name="UserInformation" Relationship="Self.FK__ArtWork__ArtistI__29572725" FromRole="ArtWork" ToRole="UserInformation" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__ArtWork__Categor__2A4B4B5E" FromRole="ArtWork" ToRole="Category" />
+          <NavigationProperty Name="Bids" Relationship="Self.FK__Bid__ArtID__2E1BDC42" FromRole="ArtWork" ToRole="Bid" />
+        </EntityType>
+        <EntityType Name="Bid">
+          <Key>
+            <PropertyRef Name="BidID" />
+          </Key>
+          <Property Name="BidID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArtID" Type="Int64" Nullable="false" />
+          <Property Name="ArtCollectorID" Type="Int32" Nullable="false" />
+          <Property Name="Bidamount" Type="Int64" />
+          <Property Name="IsAllocated" Type="Boolean" />
+          <NavigationProperty Name="ArtSales" Relationship="Self.FK__ArtSale__BidID__32E0915F" FromRole="Bid" ToRole="ArtSale" />
+          <NavigationProperty Name="ArtWork" Relationship="Self.FK__Bid__ArtID__2E1BDC42" FromRole="Bid" ToRole="ArtWork" />
+          <NavigationProperty Name="UserInformation" Relationship="Self.FK__Bid__ArtCollecto__2F10007B" FromRole="Bid" ToRole="UserInformation" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ArtWorks" Relationship="Self.FK__ArtWork__Categor__2A4B4B5E" FromRole="Category" ToRole="ArtWork" />
+        </EntityType>
+        <EntityType Name="Credential">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserType" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="UserInformation" Relationship="Self.FK__Credentia__UserI__1920BF5C" FromRole="Credential" ToRole="UserInformation" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleID" Type="Int64" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="7" />
+          <Property Name="BankName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CardType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CardNo" Type="Int64" Nullable="false" />
+          <Property Name="NameOnCard" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="ArtSale" Relationship="Self.FK__Payment__SaleID__35BCFE0A" FromRole="Payment" ToRole="ArtSale" />
+        </EntityType>
+        <EntityType Name="UserInformation">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
+          <Property Name="HouseNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PinCode" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ArtWorks" Relationship="Self.FK__ArtWork__ArtistI__29572725" FromRole="UserInformation" ToRole="ArtWork" />
+          <NavigationProperty Name="Bids" Relationship="Self.FK__Bid__ArtCollecto__2F10007B" FromRole="UserInformation" ToRole="Bid" />
+          <NavigationProperty Name="Credential" Relationship="Self.FK__Credentia__UserI__1920BF5C" FromRole="UserInformation" ToRole="Credential" />
+        </EntityType>
+        <Association Name="FK__ArtSale__BidID__32E0915F">
+          <End Role="Bid" Type="Self.Bid" Multiplicity="0..1" />
+          <End Role="ArtSale" Type="Self.ArtSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bid">
+              <PropertyRef Name="BidID" />
+            </Principal>
+            <Dependent Role="ArtSale">
+              <PropertyRef Name="BidID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payment__SaleID__35BCFE0A">
+          <End Role="ArtSale" Type="Self.ArtSale" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArtSale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArtWork__ArtistI__29572725">
+          <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="1" />
+          <End Role="ArtWork" Type="Self.ArtWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInformation">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ArtWork">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArtWork__Categor__2A4B4B5E">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="ArtWork" Type="Self.ArtWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="ArtWork">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bid__ArtID__2E1BDC42">
+          <End Role="ArtWork" Type="Self.ArtWork" Multiplicity="1" />
+          <End Role="Bid" Type="Self.Bid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArtWork">
+              <PropertyRef Name="ArtID" />
+            </Principal>
+            <Dependent Role="Bid">
+              <PropertyRef Name="ArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bid__ArtCollecto__2F10007B">
+          <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="1" />
+          <End Role="Bid" Type="Self.Bid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInformation">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Bid">
+              <PropertyRef Name="ArtCollectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Credentia__UserI__1920BF5C">
+          <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="1" />
+          <End Role="Credential" Type="Self.Credential" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserInformation">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Credential">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ArtGalleryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ArtSales" EntityType="Self.ArtSale" />
+          <EntitySet Name="ArtWorks" EntityType="Self.ArtWork" />
+          <EntitySet Name="Bids" EntityType="Self.Bid" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Credentials" EntityType="Self.Credential" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="UserInformations" EntityType="Self.UserInformation" />
+          <AssociationSet Name="FK__ArtSale__BidID__32E0915F" Association="Self.FK__ArtSale__BidID__32E0915F">
+            <End Role="Bid" EntitySet="Bids" />
+            <End Role="ArtSale" EntitySet="ArtSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payment__SaleID__35BCFE0A" Association="Self.FK__Payment__SaleID__35BCFE0A">
+            <End Role="ArtSale" EntitySet="ArtSales" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArtWork__ArtistI__29572725" Association="Self.FK__ArtWork__ArtistI__29572725">
+            <End Role="UserInformation" EntitySet="UserInformations" />
+            <End Role="ArtWork" EntitySet="ArtWorks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArtWork__Categor__2A4B4B5E" Association="Self.FK__ArtWork__Categor__2A4B4B5E">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ArtWork" EntitySet="ArtWorks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bid__ArtID__2E1BDC42" Association="Self.FK__Bid__ArtID__2E1BDC42">
+            <End Role="ArtWork" EntitySet="ArtWorks" />
+            <End Role="Bid" EntitySet="Bids" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bid__ArtCollecto__2F10007B" Association="Self.FK__Bid__ArtCollecto__2F10007B">
+            <End Role="UserInformation" EntitySet="UserInformations" />
+            <End Role="Bid" EntitySet="Bids" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Credentia__UserI__1920BF5C" Association="Self.FK__Credentia__UserI__1920BF5C">
+            <End Role="UserInformation" EntitySet="UserInformations" />
+            <End Role="Credential" EntitySet="Credentials" />
+          </AssociationSet>
+          <FunctionImport Name="ArtModify" ReturnType="Collection(ArtGalleryModel.ArtModify_Result)">
+          <Parameter Name="artistid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ArtSoldUnsold" ReturnType="Collection(ArtGalleryModel.ArtSoldUnsold_Result)">
+          <Parameter Name="artistid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BidStatus" ReturnType="Collection(ArtGalleryModel.BidStatus_Result)">
+          <Parameter Name="collectorid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="HighestBid" ReturnType="Collection(ArtGalleryModel.HighestBid_Result)">
+            <Parameter Name="artistid" Mode="In" Type="Int32" />
+            <Parameter Name="artid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="categoryview" ReturnType="Collection(ArtGalleryModel.categoryview_Result)">
+          <Parameter Name="categoryid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="categoryview1" ReturnType="Collection(ArtGalleryModel.categoryview1_Result)">
+          <Parameter Name="categoryid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="saleid" ReturnType="Collection(Int64)">
+            <Parameter Name="bidid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="saleid1" ReturnType="Collection(Int64)">
+            <Parameter Name="bidid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="saleidlast" ReturnType="Collection(ArtGalleryModel.saleidlast_Result)">
+            <Parameter Name="bidid" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ArtModify_Result">
+          <Property Type="Int64" Name="ArtID" Nullable="false" />
+          <Property Type="String" Name="ArtTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ArtDescription" Nullable="true" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Decimal" Name="MinimumBidAmount" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="ArtSoldUnsold_Result">
+          <Property Type="Int64" Name="ArtID" Nullable="false" />
+          <Property Type="String" Name="ArtTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ArtDescription" Nullable="true" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Decimal" Name="MinimumBidAmount" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="IsSold" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BidStatus_Result">
+          <Property Type="Boolean" Name="IsAllocated" Nullable="true" />
+          <Property Type="Int64" Name="BidID" Nullable="false" />
+          <Property Type="Int64" Name="Bidamount" Nullable="true" />
+          <Property Type="Int64" Name="ArtID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="HighestBid_Result">
+          <Property Type="Int32" Name="ArtCollectorID" Nullable="false" />
+          <Property Type="Int64" Name="BidID" Nullable="false" />
+          <Property Type="Boolean" Name="IsAllocated" Nullable="true" />
+          <Property Type="Int64" Name="Bidamount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="categoryview_Result">
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="ArtTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ArtDescription" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="ImageURL" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="categoryview1_Result">
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="ArtTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ArtDescription" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="ImageURL" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="ArtID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="saleidlast_Result">
+          <Property Type="Int64" Name="SaleID" Nullable="false" />
+          <Property Type="Int64" Name="Bidamount" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ArtGalleryModelStoreContainer" CdmEntityContainer="ArtGalleryEntities">
+          <EntitySetMapping Name="ArtSales">
+            <EntityTypeMapping TypeName="ArtGalleryModel.ArtSale">
+              <MappingFragment StoreEntitySet="ArtSale">
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="SoldDate" ColumnName="SoldDate" />
+                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="BidID" ColumnName="BidID" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArtWorks">
+            <EntityTypeMapping TypeName="ArtGalleryModel.ArtWork">
+              <MappingFragment StoreEntitySet="ArtWork">
+                <ScalarProperty Name="ArtID" ColumnName="ArtID" />
+                <ScalarProperty Name="ArtTitle" ColumnName="ArtTitle" />
+                <ScalarProperty Name="ArtDescription" ColumnName="ArtDescription" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="MinimumBidAmount" ColumnName="MinimumBidAmount" />
+                <ScalarProperty Name="CurrentBidAmount" ColumnName="CurrentBidAmount" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsSold" ColumnName="IsSold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bids">
+            <EntityTypeMapping TypeName="ArtGalleryModel.Bid">
+              <MappingFragment StoreEntitySet="Bid">
+                <ScalarProperty Name="BidID" ColumnName="BidID" />
+                <ScalarProperty Name="ArtID" ColumnName="ArtID" />
+                <ScalarProperty Name="ArtCollectorID" ColumnName="ArtCollectorID" />
+                <ScalarProperty Name="Bidamount" ColumnName="Bidamount" />
+                <ScalarProperty Name="IsAllocated" ColumnName="IsAllocated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ArtGalleryModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credentials">
+            <EntityTypeMapping TypeName="ArtGalleryModel.Credential">
+              <MappingFragment StoreEntitySet="Credential">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="ArtGalleryModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+                <ScalarProperty Name="NameOnCard" ColumnName="NameOnCard" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInformations">
+            <EntityTypeMapping TypeName="ArtGalleryModel.UserInformation">
+              <MappingFragment StoreEntitySet="UserInformation">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ArtModify" FunctionName="ArtGalleryModel.Store.ArtModify">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ArtGalleryModel.ArtModify_Result">
+                <ScalarProperty Name="ArtID" ColumnName="ArtID" />
+                <ScalarProperty Name="ArtTitle" ColumnName="ArtTitle" />
+                <ScalarProperty Name="ArtDescription" ColumnName="ArtDescription" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="MinimumBidAmount" ColumnName="MinimumBidAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ArtSoldUnsold" FunctionName="ArtGalleryModel.Store.ArtSoldUnsold">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ArtGalleryModel.ArtSoldUnsold_Result">
+                <ScalarProperty Name="ArtID" ColumnName="ArtID" />
+                <ScalarProperty Name="ArtTitle" ColumnName="ArtTitle" />
+                <ScalarProperty Name="ArtDescription" ColumnName="ArtDescription" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="MinimumBidAmount" ColumnName="MinimumBidAmount" />
+                <ScalarProperty Name="IsSold" ColumnName="IsSold" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BidStatus" FunctionName="ArtGalleryModel.Store.BidStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ArtGalleryModel.BidStatus_Result">
+                <ScalarProperty Name="IsAllocated" ColumnName="IsAllocated" />
+                <ScalarProperty Name="BidID" ColumnName="BidID" />
+                <ScalarProperty Name="Bidamount" ColumnName="Bidamount" />
+                <ScalarProperty Name="ArtID" ColumnName="ArtID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="HighestBid" FunctionName="ArtGalleryModel.Store.HighestBid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ArtGalleryModel.HighestBid_Result">
+                <ScalarProperty Name="ArtCollectorID" ColumnName="ArtCollectorID" />
+                <ScalarProperty Name="BidID" ColumnName="BidID" />
+                <ScalarProperty Name="IsAllocated" ColumnName="IsAllocated" />
+                <ScalarProperty Name="Bidamount" ColumnName="Bidamount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="categoryview1" FunctionName="ArtGalleryModel.Store.categoryview">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ArtGalleryModel.categoryview1_Result">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ArtTitle" ColumnName="ArtTitle" />
+                <ScalarProperty Name="ArtDescription" ColumnName="ArtDescription" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="ArtID" ColumnName="ArtID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="saleidlast" FunctionName="ArtGalleryModel.Store.saleidlast">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ArtGalleryModel.saleidlast_Result">
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="Bidamount" ColumnName="Bidamount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

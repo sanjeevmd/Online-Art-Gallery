@@ -1,0 +1,63 @@
+﻿@model IEnumerable<P_Art.Models.categoryview_Result>
+
+@{
+    ViewBag.Title = "Detailscat";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Detailscat</h2>
+<body style="background-color:silver">
+    <table class="table">
+        <tr>
+            <th>
+                Category Name
+            </th>
+            <th>
+                Art Title
+            </th>
+            <th>
+                Art Description
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Image
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ImageURL)
+                </td>*@
+            <td>
+                <div class="display-field" style="width:200px;height:300px">
+                    <img src="@Url.Content(@item.ImageURL)" alt="@item.ImageURL" />
+                </div>
+            </td>
+            
+            <td>
+                @Html.ActionLink("Bid", "Create","Bids") 
+            </td>
+        </tr>
+        }
+    </table>
+</body>

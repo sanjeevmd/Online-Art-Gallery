@@ -1,0 +1,90 @@
+﻿@model IEnumerable<P_Art.Models.ArtWork>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Index</h2>
+<body style="background-color:silver">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinimumBidAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentBidAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSold)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserInformation.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageURL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinimumBidAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentBidAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsApproved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserInformation.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ArtID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ArtID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ArtID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

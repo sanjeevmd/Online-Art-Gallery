@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Follow us at";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+<h2>@ViewBag.Title.</h2>
+
+
+
+<div class="col-md-3 col-xs-12">
+    <ul id="footer-social">
+        <li>
+            <a href="http://facebook.com/AnyDesk"><img src="@Url.Content("~/Content/mytemplate/")img/logo2.jpg" alt="Facebook" style="width:39px;height:44px;"/></a>
+            <div id="footer-share-facebook" data-title="Like"></div>
+        </li>
+        <li>
+            <a href="http://twitter.com/anydeskapp"><img src="@Url.Content("~/Content/mytemplate/")img/logo3.jpg" alt="Twitter"style="width:39px;height:44px;" /></a>
+            <!--		<div id="footer-share-twitter" data-title="Tweet"></div>-->
+            <div data-title="Tweet"></div>
+        </li>
+        <li>
+            <a href="https://www.google.com/+Anydesk-Software"><img src="@Url.Content("~/Content/mytemplate/")img/logo4.jpg" alt="Google+" style="width:39px;height:44px;"/></a>
+            <div id="footer-share-plusone" data-title="Share"></div>
+        </li>
+    </ul>
+</div>
+</div>

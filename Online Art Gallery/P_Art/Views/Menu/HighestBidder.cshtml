@@ -1,0 +1,48 @@
+﻿@model IEnumerable<P_Art.Models.HighestBid_Result>
+
+@{
+    ViewBag.Title = "HighestBidder";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>HighestBidder</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            ArtCollector ID
+        </th>
+        <th>
+            Bid ID
+        </th>
+        <th>
+            ISAllocated
+        </th>
+        <th>
+            Bid Amount
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtCollectorID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.BidID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAllocated)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Bidamount)
+            </td>
+        </tr>
+    }
+</table>

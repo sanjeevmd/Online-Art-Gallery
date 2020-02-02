@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7108f8a19cc4daebc6d8ee006f1409f" Name="Diagram1">
+        <EntityTypeShape EntityType="ArtGalleryModel.ArtSale" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtGalleryModel.ArtWork" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtGalleryModel.Bid" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtGalleryModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtGalleryModel.Credential" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtGalleryModel.Payment" Width="1.5" PointX="9.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtGalleryModel.UserInformation" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="ArtGalleryModel.FK__ArtSale__BidID__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtGalleryModel.FK__Payment__SaleID__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtGalleryModel.FK__ArtWork__ArtistI__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtGalleryModel.FK__ArtWork__Categor__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtGalleryModel.FK__Bid__ArtID__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtGalleryModel.FK__Bid__ArtCollecto__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtGalleryModel.FK__Credentia__UserI__1920BF5C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

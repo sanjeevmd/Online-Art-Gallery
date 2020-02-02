@@ -1,0 +1,48 @@
+﻿@model IEnumerable<P_Art.Models.BidStatus_Result>
+
+@{
+    ViewBag.Title = "BidStatus";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>BidStatus</h2>
+<body style="background-color:silver">
+    <table class="table">
+        <tr>
+            <th>
+                IsAllocated
+            </th>
+            <th>
+                BidID
+            </th>
+            <th>
+                BidAmount
+            </th>
+            <th>
+                ArtID
+            </th>
+            @foreach (var item in Model)
+            {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAllocated)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.BidID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bidamount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtID)
+                </td>
+                <td>
+                    @Html.ActionLink("View SaleID", "SaleIDlast", new { id = item.BidID })
+                </td>
+            </tr>
+            }
+
+        </table>
+    </body>

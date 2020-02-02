@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Collector";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Collector</h2>
+
+<body style="background-color:silver">
+    <div style="line-height:60px">
+        <ol>
+            <li>@Html.ActionLink("View Category", "Cats", "Menu")</li>
+            <li>@Html.ActionLink("Bid", "Cats", "Menu")</li>
+            <li>@Html.ActionLink("Track status of my bids", "BidStatus", "Menu")</li>
+            <li>@Html.ActionLink("MakePayment","Create","Payments")</li>
+
+            @*<li>@Html.ActionLink("View purchase history", "Index", "Categories")</li>*@
+        </ol>
+    </div>
+
+
+</body>

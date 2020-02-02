@@ -1,0 +1,70 @@
+﻿@model IEnumerable<P_Art.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CardType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CardNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOnCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtSale.DeliveryAddress)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameOnCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArtSale.DeliveryAddress)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PaymentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PaymentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PaymentID })
+        </td>
+    </tr>
+}
+
+</table>

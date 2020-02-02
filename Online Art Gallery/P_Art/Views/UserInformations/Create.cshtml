@@ -1,0 +1,145 @@
+﻿@model P_Art.Models.UserViewModel
+
+@{
+    ViewBag.Title = "XYZ | Register";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Registration </h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.FirstName)
+                @Html.ValidationMessageFor(model => model.UserInformation.FirstName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.LastName)
+                @Html.ValidationMessageFor(model => model.UserInformation.LastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.Gender)
+                @Html.ValidationMessageFor(model => model.UserInformation.Gender)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.DateOfBirth)
+                @Html.ValidationMessageFor(model => model.UserInformation.DateOfBirth)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.Email)
+                @Html.ValidationMessageFor(model => model.UserInformation.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.Phone)
+                @Html.ValidationMessageFor(model => model.UserInformation.Phone)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.HouseNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.HouseNumber)
+                @Html.ValidationMessageFor(model => model.UserInformation.HouseNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.Street, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.Street)
+                @Html.ValidationMessageFor(model => model.UserInformation.Street)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.City)
+                @Html.ValidationMessageFor(model => model.UserInformation.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.State)
+                @Html.ValidationMessageFor(model => model.UserInformation.State)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.Country)
+                @Html.ValidationMessageFor(model => model.UserInformation.Country)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserInformation.PinCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserInformation.PinCode)
+                @Html.ValidationMessageFor(model => model.UserInformation.PinCode)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Credential.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Credential.Password)
+                @Html.ValidationMessageFor(model => model.Credential.Password)
+            </div>
+        </div>
+        <div class="form-group" style="line-height:25px">
+            @Html.LabelFor(model => model.Credential.UserType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-10" style="line-height:20px">
+                Artist @Html.RadioButtonFor(model => model.Credential.UserType, "AR")
+                Collector @Html.RadioButtonFor(model => model.Credential.UserType, "CO")
+                @Html.ValidationMessageFor(model => model.Credential.UserType)
+
+
+                @*@Html.EditorFor(model => model.Credential.UserType)<p>CO-Art Collector,AR-Artist </p>
+                    @Html.ValidationMessageFor(model => model.Credential.UserType)*@
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

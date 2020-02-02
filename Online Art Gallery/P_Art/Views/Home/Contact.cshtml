@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "XYZ | Contact US";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+    //if (Session["UserId"] == null)
+    //   {
+    //       Response.Redirect("~/Home/Login");
+    //   }
+
+}
+<h2 style="font-family:cursive">Find Us Here</h2>
+<div id="map" style="width:300px;height:200px;background:black"></div>
+
+<script>
+function myMap() {
+var mapOptions = {
+    center: new google.maps.LatLng(12.9440, 80.1191),
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+}
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUd24br0AztEIkmLxrQMN4su4uUt9CuUY&callback=myMap"></script>
+<br />
+<address style="line-height:25px">
+    Computer Sciences Corporation<br />
+    MEPZ building, Chennai<br />
+    <abbr title="Phone">P:</abbr>
+    123456789.
+</address>
+<hr />
+<h4>
+    Developed by
+</h4>
+<br />
+<ul style="line-height:25px">
+    <li>Suresh Kumar.S</li>
+    <li>Manasa Vaduguru</li>
+    <li>Sanjeev M.D</li>
+</ul>
+
+<br />
+Team "Six"

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<P_Art.Models.ArtSoldUnsold_Result>
+
+@{
+    ViewBag.Title = "SoldUnsold";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>SoldUnsold</h2>
+
+
+<body style="background-color:silver">
+
+    <table class="table">
+        <tr>
+            <th>
+                Art ID
+            </th>
+            <th>
+                Art Title
+            </th>
+            <th>
+                Art Description
+            </th>
+            <th>
+                Minimum Bid Amount
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                IsSOld
+            </th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtDescription)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinimumBidAmount)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSold)
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

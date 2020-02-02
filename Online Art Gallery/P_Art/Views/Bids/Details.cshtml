@@ -1,0 +1,51 @@
+﻿@model P_Art.Models.Bid
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bid</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bidamount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bidamount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAllocated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAllocated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtWork.ArtTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArtWork.ArtTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserInformation.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserInformation.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BidID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

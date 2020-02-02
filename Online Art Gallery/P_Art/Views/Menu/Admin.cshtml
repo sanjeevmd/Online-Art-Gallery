@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
+}
+
+<h2>Admin</h2>
+<body style="background-color:silver">
+    <div style="line-height:60px">
+        <ol>
+            <li style="color:black">
+                @Html.ActionLink("Add New Category", "Create", "Categories")
+            </li>
+            <li style="color:black">
+                @Html.ActionLink("Modify Category", "Index", "Categories")
+            </li>
+            <li style="color:black">
+                @Html.ActionLink("Delete Category", "Index", "Categories")
+            </li>
+            <li style="color:black">
+                @Html.ActionLink("Approve Art Work", "Index", "ArtWorks")
+            </li>
+        </ol>
+    </div>
+
+</body>
